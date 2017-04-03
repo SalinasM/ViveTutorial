@@ -5,24 +5,24 @@ public class ViveControllerInput : MonoBehaviour {
 
 
 	private SteamVR_TrackedObject viveController;			 	//Controller
-	private GameObject collidingObject;						//Object that you're colliding with (Before grab)
-	private GameObject objectInHand;						//Grabbed object
+	private GameObject collidingObject;									//Object that you're colliding with (Before grab)
+	private GameObject objectInHand;										//Grabbed object
 
 	//Next two functions give you the controller and stores it into trackedObj
-	private SteamVR_Controller.Device Controller 
+	private SteamVR_Controller.Device Controller
 	{
 		get { return SteamVR_Controller.Input ((int)viveController.index); }
 	}
-	
+
 	void Awake()
 	{
-			viveController = GetComponent<SteamVR_TrackedObject>();	
+			viveController = GetComponent<SteamVR_TrackedObject>();
 	}
 
 	//Sets a colliding object to collidingObject for grab
 	private void SetCollidingObject(Collider col)
 	{
-		if (collidingObject || !col.GetComponent<Rigidbody> ()) 
+		if (collidingObject || !col.GetComponent<Rigidbody> ())
 		{
 			return;
 		}
@@ -54,7 +54,7 @@ public class ViveControllerInput : MonoBehaviour {
 
 	private void GrabObject()
 	{
-		objectInHand = collidingObject;				//set our objectInHand to the collidingObject 
+		objectInHand = collidingObject;				//set our objectInHand to the collidingObject
 		collidingObject = null;						//reset collidingObject because we are gonna have it in hand now
 
 		var joint = AddFixedJoint ();
@@ -81,9 +81,7 @@ public class ViveControllerInput : MonoBehaviour {
 
 		objectInHand = null;
 	}
-
-	//teleport
-		
+	
 	// Update is called once per frame
 	void Update () {
 		//
